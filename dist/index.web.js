@@ -416,7 +416,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/steven/Desktop/react/clonedemo/weex-hackernews/src/components/app-header.vue"
+Component.options.__file = "/Users/steven/Desktop/git/weex-hackernews/src/components/app-header.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] app-header.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -438,40 +438,25 @@ module.exports = Component.exports
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations__ = __webpack_require__(23);
+// import Vue from 'vue'
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var _vuex = __webpack_require__(55);
-
-var _vuex2 = _interopRequireDefault(_vuex);
-
-var _actions = __webpack_require__(21);
-
-var actions = _interopRequireWildcard(_actions);
-
-var _mutations = __webpack_require__(23);
-
-var mutations = _interopRequireWildcard(_mutations);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Vuex is auto installed on the web
 if (WXEnvironment.platform !== 'Web') {
-  Vue.use(_vuex2.default);
-} // import Vue from 'vue'
+  Vue.use(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */]);
+}
 
-
-var store = new _vuex2.default.Store({
-  actions: actions,
-  mutations: mutations,
+const store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
+  actions: __WEBPACK_IMPORTED_MODULE_1__actions__,
+  mutations: __WEBPACK_IMPORTED_MODULE_2__mutations__,
 
   state: {
     activeType: null,
@@ -496,28 +481,20 @@ var store = new _vuex2.default.Store({
   getters: {
     // ids of the items that should be currently displayed based on
     // current list type and current pagination
-    activeIds: function activeIds(state) {
-      var activeType = state.activeType,
-          lists = state.lists,
-          counts = state.counts;
-
+    activeIds(state) {
+      const { activeType, lists, counts } = state;
       return activeType ? lists[activeType].slice(0, counts[activeType]) : [];
     },
 
-
     // items that should be currently displayed.
     // this Array may not be fully fetched.
-    activeItems: function activeItems(state, getters) {
-      return getters.activeIds.map(function (id) {
-        return state.items[id];
-      }).filter(function (_) {
-        return _;
-      });
+    activeItems(state, getters) {
+      return getters.activeIds.map(id => state.items[id]).filter(_ => _);
     }
   }
 });
 
-exports.default = store;
+/* harmony default export */ __webpack_exports__["a"] = (store);
 
 /***/ }),
 /* 5 */
@@ -727,7 +704,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/steven/Desktop/react/clonedemo/weex-hackernews/src/components/story.vue"
+Component.options.__file = "/Users/steven/Desktop/git/weex-hackernews/src/components/story.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] story.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -749,28 +726,24 @@ module.exports = Component.exports
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.host = host;
-exports.https = https;
-exports.timeAgo = timeAgo;
-exports.unescape = unescape;
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["host"] = host;
+/* harmony export (immutable) */ __webpack_exports__["https"] = https;
+/* harmony export (immutable) */ __webpack_exports__["timeAgo"] = timeAgo;
+/* harmony export (immutable) */ __webpack_exports__["unescape"] = unescape;
 function host(url) {
   if (!url) return '';
-  var host = url.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
-  var parts = host.split('.').slice(-3);
+  const host = url.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+  const parts = host.split('.').slice(-3);
   if (parts[0] === 'www') parts.shift();
   return parts.join('.');
 }
 
 function https(url) {
-  var env = weex.config.env || WXEnvironment;
+  const env = weex.config.env || WXEnvironment;
   if (env.platform === 'iOS' && typeof url === 'string') {
     return url.replace(/^http\:/, 'https:');
   }
@@ -778,7 +751,7 @@ function https(url) {
 }
 
 function timeAgo(time) {
-  var between = Date.now() / 1000 - Number(time);
+  const between = Date.now() / 1000 - Number(time);
   if (between < 3600) {
     return pluralize(~~(between / 60), ' minute');
   } else if (between < 86400) {
@@ -796,7 +769,7 @@ function pluralize(time, label) {
 }
 
 function unescape(text) {
-  var res = text || '';[['<p>', '\n'], ['&amp;', '&'], ['&amp;', '&'], ['&apos;', '\''], ['&#x27;', '\''], ['&#x2F;', '/'], ['&#39;', '\''], ['&#47;', '/'], ['&lt;', '<'], ['&gt;', '>'], ['&nbsp;', ' '], ['&quot;', '"']].forEach(function (pair) {
+  let res = text || '';[['<p>', '\n'], ['&amp;', '&'], ['&amp;', '&'], ['&apos;', '\''], ['&#x27;', '\''], ['&#x2F;', '/'], ['&#39;', '\''], ['&#47;', '/'], ['&lt;', '<'], ['&gt;', '>'], ['&nbsp;', ' '], ['&quot;', '"']].forEach(pair => {
     res = res.replace(new RegExp(pair[0], 'ig'), pair[1]);
   });
 
@@ -805,74 +778,56 @@ function unescape(text) {
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
+/* harmony default export */ __webpack_exports__["a"] = ({
   methods: {
-    jump: function jump(to) {
+    jump(to) {
       if (this.$router) {
         this.$router.push(to);
       }
     }
   }
-};
+});
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_StoriesView_vue__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_StoriesView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__views_StoriesView_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_ArticleView_vue__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_ArticleView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__views_ArticleView_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_CommentView_vue__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_CommentView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_CommentView_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_UserView_vue__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_UserView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_UserView_vue__);
+// import Vue from 'vue'
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var _vueRouter = __webpack_require__(46);
 
-var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-var _StoriesView = __webpack_require__(35);
 
-var _StoriesView2 = _interopRequireDefault(_StoriesView);
-
-var _ArticleView = __webpack_require__(33);
-
-var _ArticleView2 = _interopRequireDefault(_ArticleView);
-
-var _CommentView = __webpack_require__(34);
-
-var _CommentView2 = _interopRequireDefault(_CommentView);
-
-var _UserView = __webpack_require__(36);
-
-var _UserView2 = _interopRequireDefault(_UserView);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-Vue.use(_vueRouter2.default);
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]);
 
 // Story view factory
-// import Vue from 'vue'
 function createStoriesView(type) {
   return {
-    name: type + '-stories-view',
-    render: function render(createElement) {
-      return createElement(_StoriesView2.default, { props: { type: type } });
+    name: `${type}-stories-view`,
+    render(createElement) {
+      return createElement(__WEBPACK_IMPORTED_MODULE_1__views_StoriesView_vue___default.a, { props: { type } });
     }
   };
 }
 
-exports.default = new _vueRouter2.default({
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
   // mode: 'abstract',
-  routes: [{ path: '/top', component: createStoriesView('top') }, { path: '/new', component: createStoriesView('new') }, { path: '/show', component: createStoriesView('show') }, { path: '/ask', component: createStoriesView('ask') }, { path: '/job', component: createStoriesView('job') }, { path: '/article/:url(.*)?', component: _ArticleView2.default }, { path: '/item/:id(\\d+)', component: _CommentView2.default }, { path: '/user/:id', component: _UserView2.default }, { path: '/', redirect: '/top' }]
-});
+  routes: [{ path: '/top', component: createStoriesView('top') }, { path: '/new', component: createStoriesView('new') }, { path: '/show', component: createStoriesView('show') }, { path: '/ask', component: createStoriesView('ask') }, { path: '/job', component: createStoriesView('job') }, { path: '/article/:url(.*)?', component: __WEBPACK_IMPORTED_MODULE_2__views_ArticleView_vue___default.a }, { path: '/item/:id(\\d+)', component: __WEBPACK_IMPORTED_MODULE_3__views_CommentView_vue___default.a }, { path: '/user/:id', component: __WEBPACK_IMPORTED_MODULE_4__views_UserView_vue___default.a }, { path: '/', redirect: '/top' }]
+}));
 
 /***/ }),
 /* 10 */
@@ -888,7 +843,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/steven/Desktop/react/clonedemo/weex-hackernews/src/App.vue"
+Component.options.__file = "/Users/steven/Desktop/git/weex-hackernews/src/App.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] App.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -991,14 +946,10 @@ function cloneRoute (to, from) {
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -1006,32 +957,48 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
-    back: function back() {
+    back: function () {
       this.$router.back();
     }
   }
-};
+});
 
 /***/ }),
 /* 13 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(4);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var _store = __webpack_require__(4);
-
-var _store2 = _interopRequireDefault(_store);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   name: 'comment',
   props: {
     id: {
@@ -1045,64 +1012,37 @@ exports.default = {
     }
   },
 
-  data: function data() {
+  data() {
     return {
       collapsed: false
     };
   },
 
-
   computed: {
-    className: function className() {
+    className() {
       return Number(this.depth) > 1 ? ['deep-comment'] : ['comment'];
     },
-    indent: function indent() {
+    indent() {
       return Number(this.depth) > 4 ? 0 : '50px';
     },
-    comment: function comment() {
-      return _store2.default.state.items[this.id];
+    comment() {
+      return __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].state.items[this.id];
     }
   },
 
   methods: {
-    toggle: function toggle(state) {
+    toggle(state) {
       this.collapsed = state === undefined ? !this.collapsed : state;
     }
   }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+});
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -1110,12 +1050,12 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url'],
   methods: {
-    open: function open() {
+    open() {
       // get the environment variables
-      var env = weex.config.env || WXEnvironment;
+      const env = weex.config.env || WXEnvironment;
 
       // open a new window (tab) on the web
       if (env.platform === 'Web') {
@@ -1124,30 +1064,93 @@ exports.default = {
       }
 
       // change router path on native (Android & iOS)
-      this.jump('/article/' + this.url);
+      this.jump(`/article/${this.url}`);
     }
   }
-};
+});
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__external_link_vue__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__external_link_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__external_link_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var _externalLink = __webpack_require__(32);
-
-var _externalLink2 = _interopRequireDefault(_externalLink);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  components: { ExternalLink: _externalLink2.default },
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: { ExternalLink: __WEBPACK_IMPORTED_MODULE_0__external_link_vue___default.a },
   props: {
     story: {
       type: Object,
@@ -1158,86 +1161,14 @@ exports.default = {
       default: false
     }
   }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+});
 
 /***/ }),
 /* 16 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -1263,142 +1194,113 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
-    url: function url() {
+    url() {
       if (this.$route && this.$route.params) {
         return this.$route.params.url;
       }
       return 'https://www.alibaba.com/';
     }
   }
-};
+});
 
 /***/ }),
 /* 17 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_app_header_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_app_header_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_app_header_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_story_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_story_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_story_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_comment_vue__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_comment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_comment_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var _appHeader = __webpack_require__(3);
 
-var _appHeader2 = _interopRequireDefault(_appHeader);
 
-var _story = __webpack_require__(6);
-
-var _story2 = _interopRequireDefault(_story);
-
-var _comment = __webpack_require__(31);
-
-var _comment2 = _interopRequireDefault(_comment);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  components: { AppHeader: _appHeader2.default, Story: _story2.default, Comment: _comment2.default },
-  data: function data() {
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: { AppHeader: __WEBPACK_IMPORTED_MODULE_0__components_app_header_vue___default.a, Story: __WEBPACK_IMPORTED_MODULE_1__components_story_vue___default.a, Comment: __WEBPACK_IMPORTED_MODULE_2__components_comment_vue___default.a },
+  data() {
     return {
       loading: true
     };
   },
 
-
   computed: {
-    id: function id() {
+    id() {
       if (this.$route && this.$route.params) {
         return this.$route.params.id;
       }
       return '12922141';
     },
-    story: function story() {
+    story() {
       return this.$store.state.items[this.id];
     }
   },
 
   methods: {
-    fetchItem: function fetchItem() {
+    fetchItem() {
       return this.$store.dispatch('FETCH_ITEMS', {
         ids: [this.id]
       });
     },
-    fetchComments: function fetchComments(item) {
-      var _this = this;
-
+    fetchComments(item) {
       if (item.kids) {
         return this.$store.dispatch('FETCH_ITEMS', {
           ids: item.kids
-        }).then(function () {
-          return Promise.all(item.kids.map(function (id) {
-            return _this.fetchComments(_this.$store.state.items[id]);
-          }));
-        });
+        }).then(() => Promise.all(item.kids.map(id => {
+          return this.fetchComments(this.$store.state.items[id]);
+        })));
       }
     },
-    fetchItemAndComments: function fetchItemAndComments() {
-      var _this2 = this;
 
-      return this.fetchItem().then(function () {
-        var _$store$state = _this2.$store.state,
-            items = _$store$state.items,
-            route = _$store$state.route;
-
-        return _this2.fetchComments(items[_this2.id]);
+    fetchItemAndComments() {
+      return this.fetchItem().then(() => {
+        const { items, route } = this.$store.state;
+        return this.fetchComments(items[this.id]);
       });
     }
   },
 
-  created: function created() {
-    var _this3 = this;
-
-    this.fetchItemAndComments().then(function () {
-      _this3.loading = false;
+  created() {
+    this.fetchItemAndComments().then(() => {
+      this.loading = false;
     });
   }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+});
 
 /***/ }),
 /* 18 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _appHeader = __webpack_require__(3);
-
-var _appHeader2 = _interopRequireDefault(_appHeader);
-
-var _story = __webpack_require__(6);
-
-var _story2 = _interopRequireDefault(_story);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_app_header_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_app_header_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_app_header_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_story_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_story_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_story_vue__);
 //
 //
 //
@@ -1414,8 +1316,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 
-exports.default = {
-  components: { AppHeader: _appHeader2.default, Story: _story2.default },
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: { AppHeader: __WEBPACK_IMPORTED_MODULE_0__components_app_header_vue___default.a, Story: __WEBPACK_IMPORTED_MODULE_1__components_story_vue___default.a },
   props: {
     type: {
       type: String,
@@ -1423,320 +1328,245 @@ exports.default = {
       default: 'top'
     }
   },
-  data: function data() {
+  data() {
     return {
       loading: true
     };
   },
 
-
   computed: {
-    stories: function stories() {
+    stories() {
       return this.$store.getters.activeItems;
     }
   },
 
   methods: {
-    fetchListData: function fetchListData() {
-      var _this = this;
-
+    fetchListData() {
       this.loading = true;
       this.$store.dispatch('FETCH_LIST_DATA', {
         type: this.type
-      }).then(function () {
-        _this.loading = false;
+      }).then(() => {
+        this.loading = false;
       });
     },
-    loadMoreStories: function loadMoreStories() {
-      var _this2 = this;
-
+    loadMoreStories() {
       this.loading = true;
-      this.$store.dispatch('LOAD_MORE_ITEMS').then(function () {
-        _this2.loading = false;
+      this.$store.dispatch('LOAD_MORE_ITEMS').then(() => {
+        this.loading = false;
       });
     }
   },
 
-  created: function created() {
+  created() {
     this.fetchListData();
   }
-};
+});
 
 /***/ }),
 /* 19 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_app_header_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_app_header_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_app_header_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var _appHeader = __webpack_require__(3);
-
-var _appHeader2 = _interopRequireDefault(_appHeader);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  components: { AppHeader: _appHeader2.default },
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: { AppHeader: __WEBPACK_IMPORTED_MODULE_0__components_app_header_vue___default.a },
   computed: {
-    userId: function userId() {
+    userId() {
       if (this.$route && this.$route.params) {
         return this.$route.params.id;
       }
       return 'Hanks10100';
     },
-    user: function user() {
+    user() {
       return this.$store.state.users[this.userId];
     }
   },
 
-  created: function created() {
+  created() {
     this.$store.dispatch('FETCH_USER', { id: this.userId });
   }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+});
 
 /***/ }),
 /* 20 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__App_vue__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__App_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex_router_sync__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex_router_sync___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vuex_router_sync__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__filters__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins__ = __webpack_require__(8);
+// import Vue from 'vue'
 
 
-var _App = __webpack_require__(10);
 
-var _App2 = _interopRequireDefault(_App);
 
-var _router = __webpack_require__(9);
 
-var _router2 = _interopRequireDefault(_router);
 
-var _store = __webpack_require__(4);
-
-var _store2 = _interopRequireDefault(_store);
-
-var _vuexRouterSync = __webpack_require__(11);
-
-var _filters = __webpack_require__(7);
-
-var filters = _interopRequireWildcard(_filters);
-
-var _mixins = __webpack_require__(8);
-
-var _mixins2 = _interopRequireDefault(_mixins);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // sync the router with the vuex store.
 // this registers `store.state.route`
-// import Vue from 'vue'
-(0, _vuexRouterSync.sync)(_store2.default, _router2.default);
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_vuex_router_sync__["sync"])(__WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__router__["a" /* default */]);
 
 // register global utility filters.
-Object.keys(filters).forEach(function (key) {
-  Vue.filter(key, filters[key]);
+Object.keys(__WEBPACK_IMPORTED_MODULE_4__filters__).forEach(key => {
+  Vue.filter(key, __WEBPACK_IMPORTED_MODULE_4__filters__[key]);
 });
 
 // register global mixins.
-Vue.mixin(_mixins2.default);
+Vue.mixin(__WEBPACK_IMPORTED_MODULE_5__mixins__["a" /* default */]);
 
 // create the app instance.
 // here we inject the router and store to all child components,
 // making them available everywhere as `this.$router` and `this.$store`.
-new Vue(Vue.util.extend({ el: '#root', router: _router2.default, store: _store2.default }, _App2.default));
+new Vue(Vue.util.extend({ el: '#root', router: __WEBPACK_IMPORTED_MODULE_1__router__["a" /* default */], store: __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */] }, __WEBPACK_IMPORTED_MODULE_0__App_vue___default.a));
 
-_router2.default.push('/');
+__WEBPACK_IMPORTED_MODULE_1__router__["a" /* default */].push('/');
 
 /***/ }),
 /* 21 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["FETCH_LIST_DATA"] = FETCH_LIST_DATA;
+/* harmony export (immutable) */ __webpack_exports__["LOAD_MORE_ITEMS"] = LOAD_MORE_ITEMS;
+/* harmony export (immutable) */ __webpack_exports__["ENSURE_ACTIVE_ITEMS"] = ENSURE_ACTIVE_ITEMS;
+/* harmony export (immutable) */ __webpack_exports__["FETCH_ITEMS"] = FETCH_ITEMS;
+/* harmony export (immutable) */ __webpack_exports__["FETCH_USER"] = FETCH_USER;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fetch__ = __webpack_require__(22);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.FETCH_LIST_DATA = FETCH_LIST_DATA;
-exports.LOAD_MORE_ITEMS = LOAD_MORE_ITEMS;
-exports.ENSURE_ACTIVE_ITEMS = ENSURE_ACTIVE_ITEMS;
-exports.FETCH_ITEMS = FETCH_ITEMS;
-exports.FETCH_USER = FETCH_USER;
-
-var _fetch = __webpack_require__(22);
-
-var LOAD_MORE_STEP = 10;
+const LOAD_MORE_STEP = 10;
 
 // ensure data for rendering given list type
-function FETCH_LIST_DATA(_ref, _ref2) {
-  var commit = _ref.commit,
-      dispatch = _ref.dispatch,
-      state = _ref.state;
-  var type = _ref2.type;
-
-  commit('SET_ACTIVE_TYPE', { type: type });
-  return (0, _fetch.fetchIdsByType)(type).then(function (ids) {
-    return commit('SET_LIST', { type: type, ids: ids });
-  }).then(function () {
-    return dispatch('ENSURE_ACTIVE_ITEMS');
-  });
+function FETCH_LIST_DATA({ commit, dispatch, state }, { type }) {
+  commit('SET_ACTIVE_TYPE', { type });
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__fetch__["a" /* fetchIdsByType */])(type).then(ids => commit('SET_LIST', { type, ids })).then(() => dispatch('ENSURE_ACTIVE_ITEMS'));
 }
 
 // load more items
-function LOAD_MORE_ITEMS(_ref3) {
-  var dispatch = _ref3.dispatch,
-      state = _ref3.state;
-
+function LOAD_MORE_ITEMS({ dispatch, state }) {
   state.counts[state.activeType] += LOAD_MORE_STEP;
   return dispatch('ENSURE_ACTIVE_ITEMS');
 }
 
 // ensure all active items are fetched
-function ENSURE_ACTIVE_ITEMS(_ref4) {
-  var dispatch = _ref4.dispatch,
-      getters = _ref4.getters;
-
+function ENSURE_ACTIVE_ITEMS({ dispatch, getters }) {
   return dispatch('FETCH_ITEMS', {
     ids: getters.activeIds
   });
 }
 
-function FETCH_ITEMS(_ref5, _ref6) {
-  var commit = _ref5.commit,
-      state = _ref5.state;
-  var ids = _ref6.ids;
-
+function FETCH_ITEMS({ commit, state }, { ids }) {
   // only fetch items that we don't already have.
-  var newIds = ids.filter(function (id) {
-    return !state.items[id];
-  });
-  return newIds.length ? (0, _fetch.fetchItems)(newIds).then(function (items) {
-    return commit('SET_ITEMS', { items: items });
-  }) : Promise.resolve();
+  const newIds = ids.filter(id => !state.items[id]);
+  return newIds.length ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__fetch__["b" /* fetchItems */])(newIds).then(items => commit('SET_ITEMS', { items })) : Promise.resolve();
 }
 
-function FETCH_USER(_ref7, _ref8) {
-  var commit = _ref7.commit,
-      state = _ref7.state;
-  var id = _ref8.id;
-
-  return state.users[id] ? Promise.resolve(state.users[id]) : (0, _fetch.fetchUser)(id).then(function (user) {
-    return commit('SET_USER', { user: user });
-  });
+function FETCH_USER({ commit, state }, { id }) {
+  return state.users[id] ? Promise.resolve(state.users[id]) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__fetch__["c" /* fetchUser */])(id).then(user => commit('SET_USER', { user }));
 }
 
 /***/ }),
 /* 22 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.fetch = fetch;
-exports.fetchIdsByType = fetchIdsByType;
-exports.fetchItem = fetchItem;
-exports.fetchItems = fetchItems;
-exports.fetchUser = fetchUser;
-var stream = weex.requireModule('stream');
-var baseURL = 'https://hacker-news.firebaseio.com/v0';
+/* unused harmony export fetch */
+/* harmony export (immutable) */ __webpack_exports__["a"] = fetchIdsByType;
+/* unused harmony export fetchItem */
+/* harmony export (immutable) */ __webpack_exports__["b"] = fetchItems;
+/* harmony export (immutable) */ __webpack_exports__["c"] = fetchUser;
+const stream = weex.requireModule('stream');
+const baseURL = 'https://hacker-news.firebaseio.com/v0';
 
 function fetch(path) {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     stream.fetch({
       method: 'GET',
-      url: baseURL + '/' + path + '.json',
+      url: `${baseURL}/${path}.json`,
       type: 'json'
-    }, function (response) {
+    }, response => {
       if (response.status == 200) {
         resolve(response.data);
       } else {
         reject(response);
       }
-    }, function () {});
+    }, () => {});
   });
 }
 
 function fetchIdsByType(type) {
-  return fetch(type + 'stories');
+  return fetch(`${type}stories`);
 }
 
 function fetchItem(id) {
-  return fetch('item/' + id);
+  return fetch(`item/${id}`);
 }
 
 function fetchItems(ids) {
-  return Promise.all(ids.map(function (id) {
-    return fetchItem(id);
-  }));
+  return Promise.all(ids.map(id => fetchItem(id)));
 }
 
 function fetchUser(id) {
-  return fetch('user/' + id);
+  return fetch(`user/${id}`);
 }
 
 /***/ }),
 /* 23 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.SET_ACTIVE_TYPE = SET_ACTIVE_TYPE;
-exports.SET_LIST = SET_LIST;
-exports.SET_ITEMS = SET_ITEMS;
-exports.SET_USER = SET_USER;
-function SET_ACTIVE_TYPE(state, _ref) {
-  var type = _ref.type;
-
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["SET_ACTIVE_TYPE"] = SET_ACTIVE_TYPE;
+/* harmony export (immutable) */ __webpack_exports__["SET_LIST"] = SET_LIST;
+/* harmony export (immutable) */ __webpack_exports__["SET_ITEMS"] = SET_ITEMS;
+/* harmony export (immutable) */ __webpack_exports__["SET_USER"] = SET_USER;
+function SET_ACTIVE_TYPE(state, { type }) {
   state.activeType = type;
 }
 
-function SET_LIST(state, _ref2) {
-  var type = _ref2.type,
-      ids = _ref2.ids;
-
+function SET_LIST(state, { type, ids }) {
   state.lists[type] = ids;
 }
 
-function SET_ITEMS(state, _ref3) {
-  var items = _ref3.items;
-
-  items.forEach(function (item) {
+function SET_ITEMS(state, { items }) {
+  items.forEach(item => {
     if (item) {
       Vue.set(state.items, item.id, item);
     }
   });
 }
 
-function SET_USER(state, _ref4) {
-  var user = _ref4.user;
-
+function SET_USER(state, { user }) {
   Vue.set(state.users, user.id, user);
 }
 
@@ -1856,7 +1686,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/steven/Desktop/react/clonedemo/weex-hackernews/src/components/comment.vue"
+Component.options.__file = "/Users/steven/Desktop/git/weex-hackernews/src/components/comment.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] comment.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1890,7 +1720,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/steven/Desktop/react/clonedemo/weex-hackernews/src/components/external-link.vue"
+Component.options.__file = "/Users/steven/Desktop/git/weex-hackernews/src/components/external-link.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] external-link.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1928,7 +1758,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/steven/Desktop/react/clonedemo/weex-hackernews/src/views/ArticleView.vue"
+Component.options.__file = "/Users/steven/Desktop/git/weex-hackernews/src/views/ArticleView.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ArticleView.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1966,7 +1796,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/steven/Desktop/react/clonedemo/weex-hackernews/src/views/CommentView.vue"
+Component.options.__file = "/Users/steven/Desktop/git/weex-hackernews/src/views/CommentView.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] CommentView.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2004,7 +1834,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/steven/Desktop/react/clonedemo/weex-hackernews/src/views/StoriesView.vue"
+Component.options.__file = "/Users/steven/Desktop/git/weex-hackernews/src/views/StoriesView.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] StoriesView.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2042,7 +1872,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/steven/Desktop/react/clonedemo/weex-hackernews/src/views/UserView.vue"
+Component.options.__file = "/Users/steven/Desktop/git/weex-hackernews/src/views/UserView.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] UserView.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2451,7 +2281,6 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(process) {/**
   * vue-router v2.8.1
   * (c) 2017 Evan You
@@ -5074,7 +4903,7 @@ if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (VueRouter);
+/* harmony default export */ __webpack_exports__["a"] = (VueRouter);
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
 
@@ -5298,14 +5127,13 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
+/* WEBPACK VAR INJECTION */(function(process) {/* unused harmony export Store */
+/* unused harmony export install */
+/* unused harmony export mapState */
+/* unused harmony export mapMutations */
+/* unused harmony export mapGetters */
+/* unused harmony export mapActions */
+/* unused harmony export createNamespacedHelpers */
 /**
  * vuex v2.5.0
  * (c) 2017 Evan You
@@ -6236,7 +6064,7 @@ var index_esm = {
 };
 
 
-/* harmony default export */ __webpack_exports__["default"] = (index_esm);
+/* harmony default export */ __webpack_exports__["a"] = (index_esm);
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
 
